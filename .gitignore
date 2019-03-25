@@ -1,0 +1,25 @@
+#general files to exclude
+*~
+.AppleDouble
+*.pyc
+
+#Exclude the scratch folder, except one hidden file, which will still cause folder to be created for a new repository clone.
+/scratch/*
+!/scratch/.FolderNotes
+
+#Don't track the Interpolant files since they are big binary files and will just be re-created automatically the next time the code is run, and you likely want them to be re-created anyway if you are creating a new clone of the repository with newer python module versions.
+*Interpolant.p
+
+#Don't track the python-refprop repository since it's it's own repository.
+/FluidProperties/REFPROP/PyREFPROP
+
+#Don't track the REFPROP source files since everyone is supposed to pay a tax to NIST and obtain them from NIST, but still create the folder so it's obvious where to drop the source files once they are obtained.
+/FluidProperties/REFPROP/REFPROPSource/*
+!/FluidProperties/REFPROP/REFPROPSource/Place_your_fluids_fortran_and_mixtures_folders_here.note
+
+#Don't track REFPROP binary files for the same reasons as the REFPROP source files. This folder will be automatically created by the compilation script, so don't need the hidden placeholder file that would make git automatically create it.
+/FluidProperties/REFPROP/REFPROPBinaries
+
+#Don't track property tables in .csv format since they are large, can be regenerated, and were actually for importing into STAR-CCM+, not cycle analysis.
+/FluidProperties/FluidPropertyTables/*
+!/FluidProperties/FluidPropertyTables/GenerateSTAR-CCMPropertyTables.py_dumps_output_data_here.note

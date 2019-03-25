@@ -1,0 +1,56 @@
+#!/bin/bash
+
+###############################################################################
+###############################################################################
+#Copyright (c) 2016, Andy Schroder
+#See the file README.md for licensing information.
+###############################################################################
+###############################################################################
+
+
+if [ "$#" -ne 1 ]; then
+	echo "Usage: $0 RunFileBaseName" >&2
+	exit 1
+fi
+
+#use sage if it's installed because it's probably installed for a reason as an alternative
+#self contained python distribution because the operating system (such as open suse) python is not up to date or something
+if [ -x "$(which sage)" ] ; then
+	TheInterpretor='sage'
+	export SAGE_PATH=$PWD
+else
+	#not using regular python because for some reason it is not allowing modules to be imported relative to the working
+	#directory not in the regular search path, only those relative to the file's directory instead.
+	TheInterpretor='ipython'
+fi
+
+
+#see if the requested script exists relative to the working directory
+if [ ! -e "RunFiles/$1.py" ]; then
+	echo "RunFiles/$1.py does not exist, aborting"
+	exit 1
+fi
+
+if [ ! -d "outputs" ]; then
+	echo "outputs does not exist. running this command from the right folder?"
+	exit 1
+fi
+
+if [ -d "outputs/$1" ]; then
+	echo "outputs/$1 already exists. delete it or rename it and try again."
+	exit 1
+fi
+
+#make the output folder
+mkdir "outputs/$1"
+
+OutputFileName="outputs/$1/$1-output-$(date +"%F_%H-%M").txt"
+
+#run and save standard output and standard error to the output folder
+$TheInterpretor RunFiles/$1.py >> $OutputFileName 2>&1 &
+
+echo "Run started and sent to the background"
+echo "may want to run: less +F $OutputFileName"
+echo "in order to monitor the progress"
+
+
