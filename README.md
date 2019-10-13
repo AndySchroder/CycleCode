@@ -108,6 +108,7 @@ Ordered from highest to lowest level.
 ### `ParallelCycles.py` ###
 - Implements parallel design exploration and optimization as well as combined cycle engine configurations.
 - Design explorer and optimizers are setup for both the single cycle as well as the combined cycle configuration.
+- Tip: If you want to do coarse optimization runs in order to more quickly verify that the code is working okay, set `popsize=20`, `tol=2**-2`, `polishtol=5e-3`, and `polishmaxiter=20` in `ParallelCycles.py`.
 
 
 ### `Cycles.py` ###
