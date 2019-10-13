@@ -94,7 +94,9 @@ Ordered from highest to lowest level.
 - Run files are python scripts that define variables needed for a case and then run the appropriate function for that case.
 - The output folder for these cases defined in `ParallelCycles.py` in a few places is `outputs/`.
 - For cases where `ParallelCycles.py` is not used, the output usually goes to `scratch/`.
-- For parallel runs, you are likely going to want to change the value of `ParallelCycles.NumberOfCPUs` to something other than the default, which is usually set to 24, if you have a basic desktop computer.
+- In parallel run files, the value of `ParallelCycles.NumberOfCPUs` has been set to `2` so that you can get running without needing a high performance workstation (each parallel process uses additional memory, so too much parallelization without sufficient computing hardware could result in RAM being exhausted on your system and processes beginning to crash, in addition to just slowing down your system).
+  - Tip: If you want quickly change all parallel run files to use more CPUs, run a command such as `sed -i 's/ParallelCycles.NumberOfCPUs=2/ParallelCycles.NumberOfCPUs=5/g' *` from within the `RunFiles` folder.
+  - Note: If you have a very large number of CPUs available on your workstation, check to make sure that you aren't over allocating CPUs to a run. For example, `CombinedCycle-OptimizedParameterSweep-NumberOfEngines.py` needs a maximum of `6` CPUs because there are only `6` permutations conducted in it.
 - Some `RunFiles` do a little post processing too.
 
 

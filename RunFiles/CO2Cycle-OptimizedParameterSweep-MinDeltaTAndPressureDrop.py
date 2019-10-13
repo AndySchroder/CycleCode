@@ -155,7 +155,7 @@ ParallelCycles.IndependentVariableValues=SweptIndependentVariableValues					#not
 #optimize based on initial guesses and fixed values
 
 ParallelCycles.PrintOutputs=False			#think this may have been changed to helpers.PrintWarningMessages, so it is obsolete???
-ParallelCycles.NumberOfCPUs=24				#note, setting this to 1 will not use joblib. if raising errors for debugging, seem to need to use 1 because joblib gives weird errors when a permutation has an exception. note error make more sense now that joblib was updated to a new version, but still need to set to serial mode to actually debug them.
+ParallelCycles.NumberOfCPUs=2				#note, setting this to 1 will not use joblib. if raising errors for debugging, seem to need to use 1 because joblib gives weird errors when a permutation has an exception. note error make more sense now that joblib was updated to a new version, but still need to set to serial mode to actually debug them.
 ParallelCycles.RunName=helpers.GetCaseName()
 
 #save out a few extra objects needed for post processing
