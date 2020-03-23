@@ -324,12 +324,6 @@ SaveTheFigure(TheFigure,FileName=BaseOutputFilePath+'/'+CaseName+'-ExergyEfficie
 
 
 
-BaseOutputFilePath='/tmp/'
-
-
-CaseName='FuelCellCombinedCycle-OptimizerTolerance-OldData'
-TheFigure,ThePlot,TheLines=PlotParameterSweep(BaseInputFilePath,CaseName,PlotMagnitudeDescription='Cycle Efficiency [%]',ContourLevelRoundTo=.05)
-SaveTheFigure(TheFigure,FileName=BaseOutputFilePath+'/'+CaseName+'.pdf')
 
 
 

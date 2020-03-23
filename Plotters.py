@@ -64,7 +64,11 @@ def PlotCycle(CycleParameters,HorizontalAxis='Entropy',VerticalAxis='Temperature
 	MaxPressure=20e6
 	if 'MainCompressor' in CycleParameters:		#this will fail if doing the constant volume cycle, so don't even try if there is no main compressor
 		MaxPressure=max(MaxPressure,nearestMultiple(CycleParameters['MainCompressor']['CompressedProperties']['Pressure'],5e6,direction='up'))
-	MaxPressure=max(MaxPressure,nearestMultiple(CycleParameters['SecondPlusThirdHeating']['HeatedProperties']['Pressure'],5e6,direction='up'))+5e6
+	if 'SecondPlusThirdHeating' in CycleParameters:
+		MaxPressure=max(MaxPressure,nearestMultiple(CycleParameters['SecondPlusThirdHeating']['HeatedProperties']['Pressure'],5e6,direction='up'))
+	if 'CombinedFuelCellAndCombustor:' in CycleParameters:
+		MaxPressure=max(MaxPressure,nearestMultiple(CycleParameters['CombinedFuelCellAndCombustor:']['HeatedProperties']['Pressure'],5e6,direction='up'))
+	MaxPressure+=5e6
 
 
 	if CycleParameters['Fluid']=='air':
